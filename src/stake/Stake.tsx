@@ -86,8 +86,10 @@ function Stake(): JSX.Element {
             ))}
           </div>
 
-          <div className="mt-10 text-center">
-            <button className='px-20 py-3 text-sm font-semibold rounded-3xl bg-violet-800'>STAKE ATOM</button>
+          <div className="mt-10 mx-auto sticky bottom-4 text-center">
+            <button className=' px-20 py-3 text-sm font-semibold rounded-3xl bg-violet-800'>STAKE ATOM</button>
+          </div>
+          <div className=" text-center">
             <p className='my-3 text-sm text-zinc-500'>Netork Fee 0.0005075</p>
           </div>
         </section>

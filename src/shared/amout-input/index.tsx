@@ -29,12 +29,12 @@ export default function AmountInput({
 
   return (
     <label className={`flex flex-col ${classes}`}>
-      <span className='text-zinc-500'>{label}</span>
+      <span className='text-sm text-zinc-500'>{label}</span>
       <input
         {...otherProps}
         type='text'
         inputMode='numeric'
-        className={`text-7xl text-violet-400 placeholder:text-violet-400 opacity-75
+        className={`mt-4 text-7xl text-violet-400 opacity-75 placeholder:text-violet-400
           ${align === 'right' ? 'text-right' : ''}`}
         placeholder="0.00"
         value={value || ''}

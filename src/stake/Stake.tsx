@@ -25,10 +25,10 @@ function Stake(): JSX.Element {
   useEffect(() => {
     const wasGuided = window.localStorage.getItem("was-guided")
 
+    if (!wasGuided) {
+      window.localStorage.setItem("was-guided", 'true')
       setIsOpen(true)
-      if (!wasGuided) {
-        window.localStorage.setItem("was-guided", 'true')
-      }    
+    }
   }, [])
 
   return (

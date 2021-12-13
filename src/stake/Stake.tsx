@@ -9,6 +9,7 @@ import { selectStaked, selectAmount } from './slice';
 import { useAppSelector } from '../shared/hooks';
 import { useTour } from '@reactour/tour';
 import { getMonthAbbr } from '../shared/utils/date';
+import steps from './tutorial.json';
 
 const options = [
   { label: '25%', value: '25' },
@@ -24,12 +25,24 @@ function Stake(): JSX.Element {
 
   useEffect(() => {
     const wasGuided = window.localStorage.getItem("was-guided")
+    const delay = 3000
+    let timer: any
+    
+    if (isOpen) {
+      timer = setTimeout(
+        () => setCurrentStep(s => (s === steps.length - 1 ? setIsOpen(false) : s + 1)),
+        delay
+      )
+    }
 
     if (!wasGuided) {
       window.localStorage.setItem("was-guided", 'true')
       setIsOpen(true)
     }
-  }, [])
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [isOpen, currentStep])
 
   return (
     

@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 
 import App from './App';
 import { store } from "./global/store";
+import './global/form-reset.css';
 import './global/tailwind.css';
 import './index.css';
 

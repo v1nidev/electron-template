@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import './index.css';
 import App from './App';
 import { store } from "./global/store";
+import 'modern-normalize';
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,13 +1,14 @@
 import React from 'react';
 
-import { themeClass, exampleStyle } from './index.css';
+import { themeClass } from './index.css';
+import Stake from './stake/Stake';
 
 function App(): JSX.Element {
 
 
   return (
     <div className={`${themeClass}`}>
-      <h1 className={`${exampleStyle}`}>Hello world!!</h1>
+      <Stake />
     </div>
   );
 }

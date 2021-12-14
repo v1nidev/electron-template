@@ -23,6 +23,7 @@ const options = [
 function Stake(): JSX.Element {
   const [savedAmount, setSavedAmount] = useState<string | number>('')
   const [earningsAmount, setEarningsAmount] = useState<string | number>('')
+  const [selectedPercentage, setSelectedPercentage] = useState('')
   const stakedList = useAppSelector(selectStaked)
   const { setIsOpen, isOpen, currentStep, setCurrentStep } = useTour()
 

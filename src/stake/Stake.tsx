@@ -23,6 +23,15 @@ function Stake(): JSX.Element {
   const stakedList = useAppSelector(selectStaked)
   const { setIsOpen, isOpen, currentStep, setCurrentStep } = useTour()
 
+  function setCurrentStepCallback(step: number) {    
+    if (step === steps.length - 1) {
+      setIsOpen(false)
+      return NaN
+    } else {
+      return step + 1
+    }
+  }
+
   useEffect(() => {
     const wasGuided = window.localStorage.getItem("was-guided")
     const delay = 3000
@@ -30,7 +39,7 @@ function Stake(): JSX.Element {
     
     if (isOpen) {
       timer = setTimeout(
-        () => setCurrentStep(s => (s === steps.length - 1 ? setIsOpen(false) : s + 1)),
+        () => setCurrentStep(setCurrentStepCallback),
         delay
       )
     }

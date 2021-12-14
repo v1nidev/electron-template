@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { separator } from './style.css';
-import AmountInput from '../shared/amout-input';
+import AmountInput from '../shared/amount-input';
 import cosmosLogo from '../shared/img/cosmos.svg';
 import linkIcon from '../shared/img/icon-social-link.svg';
 import RadioButtonGroup from '../shared/radio-button-group';

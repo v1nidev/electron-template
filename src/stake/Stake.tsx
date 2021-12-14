@@ -42,12 +42,17 @@ function Stake(): JSX.Element {
       date: new Date(),
       value: savedAmount,
     }))
+    reset()
+  }
+
+  function reset() {
+    setSavedAmount('')
+    setEarningsAmount('')
   }
     
   function handleSavedAmountInput(value: string) {
     if (['', '0'].includes(value)) {
-      setSavedAmount('')
-      setEarningsAmount('')
+      reset()
       return
     }
 
@@ -62,8 +67,7 @@ function Stake(): JSX.Element {
 
   function handleEarningsInput(value: string) {
     if (['', '0'].includes(value)) {
-      setSavedAmount('')
-      setEarningsAmount('')
+      reset()
       return
     }
 

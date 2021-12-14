@@ -11,6 +11,9 @@ import { useTour } from '@reactour/tour';
 import { getMonthAbbr } from '../shared/utils/date';
 import steps from './tutorial.json';
 
+
+const apyPercentage = 10.0377
+const apyMultiplier = apyPercentage / 100
 const options = [
   { label: '25%', value: '25' },
   { label: '50%', value: '50' },
@@ -18,8 +21,8 @@ const options = [
 ]
 
 function Stake(): JSX.Element {
-  const [savedAmount, setSavedAmount] = useState('')
-  const [earningsAmount, setEarningsAmount] = useState('')
+  const [savedAmount, setSavedAmount] = useState<string | number>('')
+  const [earningsAmount, setEarningsAmount] = useState<string | number>('')
   const stakedList = useAppSelector(selectStaked)
   const { setIsOpen, isOpen, currentStep, setCurrentStep } = useTour()
 
@@ -31,6 +34,18 @@ function Stake(): JSX.Element {
       return step + 1
     }
   }
+
+  useEffect(() => {
+    const savedAmountAsFloat = parseFloat(savedAmount as string)
+
+    setEarningsAmount(savedAmountAsFloat * apyMultiplier + savedAmountAsFloat)
+  }, [savedAmount])
+
+  useEffect(() => {
+    const savedEarningsAmount = parseFloat(earningsAmount as string)
+
+    setSavedAmount(savedEarningsAmount / (apyMultiplier + 1))
+  }, [earningsAmount])
 
   useEffect(() => {
     const wasGuided = window.localStorage.getItem("was-guided")

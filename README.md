@@ -35,6 +35,11 @@ Clone this repo and install all dependencies
 - Insert decoration background;
 - Apply gradient background and opacity transition to the CTA button.
 
+### Secondary
+
+- Document how to use the tour library
+- Improve layout on mobile
+
 ## Used libraries
 
 ### User feature guide

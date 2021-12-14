@@ -12,7 +12,7 @@ interface Props {
   onChange?: (value: string) => void
 }
 
-const commomClasses = `text-sm font-medium px-8 py-3 text-zinc-500 bg-black
+const commomClasses = `text-sm font-medium px-8 py-3 text-zinc-500
  hover:text-zinc-400 focus:z-10 focus:ring-2 cursor-pointer`
 
 export default function RadioButtonGroup({

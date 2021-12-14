@@ -28,12 +28,9 @@ Clone this repo and install all dependencies
 
 ## TO-DO
 
-- Fix seconds precision in stake listed items;
-
-### Secondary
-
-- Document how to use the tour library
-- Improve layout on mobile
+- Move business logic from Stake component to a custom hook
+- To improve style consistency, I'd remove Tailwind and configure all design tokens using vanilla-extract
+- Review and refactor code
 
 ## Used libraries
 

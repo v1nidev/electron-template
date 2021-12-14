@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import { separator } from './style.css';
+import { page, separator } from './style.css';
 import AmountInput from '../shared/amount-input';
 import cosmosLogo from '../shared/img/cosmos.svg';
 import linkIcon from '../shared/img/icon-social-link.svg';
@@ -48,8 +48,6 @@ function Stake(): JSX.Element {
     const savedAmountAsFloat = parseFloat(value as string)
     const earnings = savedAmountAsFloat * apyMultiplier + savedAmountAsFloat
     
-    console.log('savedAmount changed')
-
     setSavedAmount(value)
     setEarningsAmount(getPrecision(earnings) > 6
       ? earnings.toFixed(6)
@@ -94,7 +92,7 @@ function Stake(): JSX.Element {
   }, [isOpen, currentStep])
 
   return (
-    <main className='container mx-auto pt-24 px-4'>
+    <main className={`${page}  container mx-auto pt-24 px-4`}>
       <header className='text-center'>
         <img width={80} height={80} src={cosmosLogo} alt='Cosmos logo' className='mx-auto' />
         <h1 className='mt-16 text-5xl'>Earn Cosmos ATOM</h1>
@@ -111,7 +109,6 @@ function Stake(): JSX.Element {
             align='right'
             min={0}
             maxLength={9}
-            
             onInput={handleSavedAmountInput}
           />
           <div className={`${separator} relative opacity-10`}>
@@ -140,7 +137,6 @@ function Stake(): JSX.Element {
                 &nbsp;{staked.date.getDate()},
                 &nbsp;{staked.date.getFullYear()}
                 &nbsp;{staked.date.getHours()}:{staked.date.getMinutes()}:{staked.date.getSeconds()}
-
               </p>
               <p className='ml-2 text-right text-violet-400 opacity-75'>{staked.value} ATOM</p>
             </section>

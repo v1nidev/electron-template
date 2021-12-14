@@ -10,6 +10,7 @@ import { useAppSelector } from '../shared/hooks';
 import { useTour } from '@reactour/tour';
 import { getMonthAbbr } from '../shared/utils/date';
 import steps from './tutorial.json';
+import { getPrecision } from '../shared/utils/number';
 
 
 const apyPercentage = 10.0377
@@ -21,8 +22,8 @@ const options = [
 ]
 
 function Stake(): JSX.Element {
-  const [savedAmount, setSavedAmount] = useState<string | number>('')
-  const [earningsAmount, setEarningsAmount] = useState<string | number>('')
+  const [savedAmount, setSavedAmount] = useState<string>('')
+  const [earningsAmount, setEarningsAmount] = useState<string>('')
   const [selectedPercentage, setSelectedPercentage] = useState('')
   const stakedList = useAppSelector(selectStaked)
   const { setIsOpen, isOpen, currentStep, setCurrentStep } = useTour()
@@ -36,17 +37,40 @@ function Stake(): JSX.Element {
     }
   }
 
-  useEffect(() => {
-    const savedAmountAsFloat = parseFloat(savedAmount as string)
+    
+  function handleSavedAmountInput(value: string) {
+    if (['', '0'].includes(value)) {
+      setSavedAmount('')
+      setEarningsAmount('')
+      return
+    }
 
-    setEarningsAmount(savedAmountAsFloat * apyMultiplier + savedAmountAsFloat)
-  }, [savedAmount])
+    const savedAmountAsFloat = parseFloat(value as string)
+    const earnings = savedAmountAsFloat * apyMultiplier + savedAmountAsFloat
+    
+    console.log('savedAmount changed')
 
-  useEffect(() => {
-    const savedEarningsAmount = parseFloat(earningsAmount as string)
+    setSavedAmount(value)
+    setEarningsAmount(getPrecision(earnings) > 6
+      ? earnings.toFixed(6)
+      : earnings.toString())
+  }
 
-    setSavedAmount(savedEarningsAmount / (apyMultiplier + 1))
-  }, [earningsAmount])
+  function handleEarningsInput(value: string) {
+    if (['', '0'].includes(value)) {
+      setSavedAmount('')
+      setEarningsAmount('')
+      return
+    }
+
+    const earningsAmountAsFloat = parseFloat(value as string)
+    const neededSavedAmount = earningsAmountAsFloat / (apyMultiplier + 1)
+    
+    setEarningsAmount(value)
+    setSavedAmount(getPrecision(neededSavedAmount) > 6
+      ? neededSavedAmount.toFixed(6)
+      : neededSavedAmount.toString())
+  }
 
   useEffect(() => {
     const wasGuided = window.localStorage.getItem("was-guided")
@@ -88,7 +112,7 @@ function Stake(): JSX.Element {
             min={0}
             maxLength={9}
             
-            onInput={(value: string) => setSavedAmount(value)}
+            onInput={handleSavedAmountInput}
           />
           <div className={`${separator} relative opacity-10`}>
             <img width={36} height={36} src={linkIcon} alt='' />
@@ -100,12 +124,12 @@ function Stake(): JSX.Element {
             align='left'
             min={0}
             maxLength={9}
-            onInput={(value: string) => setEarningsAmount(value)}
+            onInput={handleEarningsInput}
           />
         </div>
 
         <div className='flex mt-16 justify-center'>
-          <RadioButtonGroup options={options} />
+          <RadioButtonGroup options={options} selectedVaue={selectedPercentage} onChange={setSelectedPercentage} />
         </div>
 
         <div className='mt-20  mx-auto max-w-2xl'>

@@ -2,7 +2,7 @@ import React from "react";
 
 interface Props {
   label: string
-  value: string | number
+  value: string
   align?: 'left' | 'center' | 'right'
   onInput: (value: string) => void
 }

@@ -29,7 +29,6 @@ Clone this repo and install all dependencies
 ## TO-DO
 
 - Insert stake fractions to the list after the user select the percentage and click the CTA button;
-- Make the percentage buttons more similar to the design shown on the videos (including the animation);
 - Fix seconds precision in stake listed items;
 - Insert decoration background;
 - Apply gradient background and opacity transition to the CTA button.

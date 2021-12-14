@@ -11,29 +11,20 @@ export interface StakeState {
 
 const initialState: StakeState = {
   amount: 0,
-  staked: [
-    {
-      date: new Date(),
-      value: 3215.00533,
-    },
-    {
-      date: new Date(2019, 11, 17, 3, 24, 0),
-      value: 653532,
-    },
-  ]
+  staked: []
 };
 
 export const stakeSlice = createSlice({
   name: 'stake',
   initialState,
   reducers: {
-    reducerExample(state) {
-      state.amount += 1;
+    addStaked(state, action) {
+      state.staked.push(action.payload)
     }
   }
 })
 
-export const { reducerExample } = stakeSlice.actions;
+export const { addStaked } = stakeSlice.actions;
 export const selectAmount = (state: RootState) => state.stake.amount;
 export const selectStaked = (state: RootState) => state.stake.staked;
 

@@ -28,9 +28,7 @@ Clone this repo and install all dependencies
 
 ## TO-DO
 
-- Insert stake fractions to the list after the user select the percentage and click the CTA button;
 - Fix seconds precision in stake listed items;
-- Insert decoration background;
 
 ### Secondary
 

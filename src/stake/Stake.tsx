@@ -5,13 +5,12 @@ import AmountInput from '../shared/amount-input';
 import cosmosLogo from '../shared/img/cosmos.svg';
 import linkIcon from '../shared/img/icon-social-link.svg';
 import RadioButtonGroup from '../shared/radio-button-group';
-import { selectStaked, selectAmount } from './slice';
-import { useAppSelector } from '../shared/hooks';
+import { selectStaked, addStaked } from './slice';
+import { useAppDispatch, useAppSelector } from '../shared/hooks';
 import { useTour } from '@reactour/tour';
 import { getMonthAbbr } from '../shared/utils/date';
 import steps from './tutorial.json';
 import { getPrecision } from '../shared/utils/number';
-
 
 const apyPercentage = 10.0377
 const apyMultiplier = apyPercentage / 100
@@ -27,6 +26,7 @@ function Stake(): JSX.Element {
   const [selectedPercentage, setSelectedPercentage] = useState('')
   const stakedList = useAppSelector(selectStaked)
   const { setIsOpen, isOpen, currentStep, setCurrentStep } = useTour()
+  const dispatch = useAppDispatch()
 
   function setCurrentStepCallback(step: number) {    
     if (step === steps.length - 1) {
@@ -37,6 +37,12 @@ function Stake(): JSX.Element {
     }
   }
 
+  function stake() {
+    dispatch(addStaked({
+      date: new Date(),
+      value: savedAmount,
+    }))
+  }
     
   function handleSavedAmountInput(value: string) {
     if (['', '0'].includes(value)) {
@@ -129,7 +135,7 @@ function Stake(): JSX.Element {
           <RadioButtonGroup options={options} selectedVaue={selectedPercentage} onChange={setSelectedPercentage} />
         </div>
 
-        <div className='mt-20  mx-auto max-w-2xl'>
+        <div className='mt-20 empty:mt-0 mx-auto max-w-2xl'>
           {stakedList.map((staked, i) => (
             <section key={i} className='flex mb-3 py-8 px-9 justify-between bg-zinc-800'>
               <p data-tour={`${i === 0 ? 'step-2' : ''}`}>
@@ -144,7 +150,16 @@ function Stake(): JSX.Element {
         </div>
 
         <div className="mt-10 mx-auto sticky bottom-4 text-center">
-          <button className=' px-20 py-3 text-sm font-semibold rounded-3xl bg-violet-800'>STAKE ATOM</button>
+          <button
+            onClick={stake}
+            className={`
+              px-20 py-4 text-sm font-semibold rounded-3xl
+              bg-gradient-to-l from-purple-500 to-pink-500 ${savedAmount ? 'opacity-100' : 'opacity-70 pointer-events-none'}
+              transition-opacity transito
+            `}
+          >
+            STAKE ATOM
+          </button>
         </div>
         <div className=" text-center">
           <p className='my-3 text-sm text-zinc-500'>Netork Fee 0.0005075</p>

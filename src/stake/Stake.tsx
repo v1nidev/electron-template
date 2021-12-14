@@ -146,7 +146,7 @@ function Stake(): JSX.Element {
                 {getMonthAbbr(staked.date)}
                 &nbsp;{staked.date.getDate()},
                 &nbsp;{staked.date.getFullYear()}
-                &nbsp;{staked.date.getHours()}:{staked.date.getMinutes()}:{staked.date.getSeconds()}
+                &nbsp;{staked.date.getHours() || '00'}:{staked.date.getMinutes() || '00'}:{staked.date.getSeconds() || '00'}
               </p>
               <p className='ml-2 text-right text-violet-400 opacity-75'>{staked.value} ATOM</p>
             </section>

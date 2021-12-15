@@ -88,6 +88,7 @@ function Stake(): JSX.Element {
 
         <div className="mt-10 mx-auto sticky bottom-4 text-center">
           <button
+            data-tour='step-2'
             onClick={stake}
             className={`
               px-20 py-4 text-sm font-semibold rounded-3xl

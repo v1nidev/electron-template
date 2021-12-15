@@ -6,12 +6,12 @@
     },
     {
       "selector": "[data-tour='step-2']",
-      "content": "Explore transaction history!"
+      "content": "Stake an amount clicking here."
     }
   ],
   "percentageOptions": [
-    { "label": "25%", "value": "25"    },
-    { "label": "50%", "value": "50"    },
-    { "label": "ALL", "value": "100"    }
+    { "label": "25%", "value": "25" },
+    { "label": "50%", "value": "50" },
+    { "label": "ALL", "value": "100" }
   ]
 }

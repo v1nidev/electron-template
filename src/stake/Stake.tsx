@@ -31,8 +31,8 @@ function Stake(): JSX.Element {
   useEffect(() => {
     const wasGuided = window.localStorage.getItem("was-guided")
 
-    setIsTourOpen(true)
     if (!wasGuided) {
+      setIsTourOpen(true)
       window.localStorage.setItem("was-guided", "true")
     }
   }, [])

@@ -20,7 +20,7 @@ const tourStyles = {
 function App(): JSX.Element {
   return (
     <TourProvider steps={tourSteps} styles={tourStyles}>
-      <div className={`${themeClass}`}>
+      <div className={themeClass}>
         <Stake />
       </div>
     </TourProvider>

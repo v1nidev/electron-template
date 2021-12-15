@@ -8,7 +8,7 @@ import RadioButtonGroup from '../shared/radio-button-group';
 import { selectStaked, addStaked } from './slice';
 import { useAppDispatch, useAppSelector } from '../shared/hooks';
 import { useTour } from '@reactour/tour';
-import { getMonthAbbr } from '../shared/utils/date';
+import { getFullFormatedDate, getMonthAbbr } from '../shared/utils/date';
 import { tourSteps, percentageOptions } from './config.json';
 import useEarningCalc from './use-earning-calc';
 
@@ -100,10 +100,7 @@ function Stake(): JSX.Element {
           {stakedList.map((staked, i) => (
             <section key={i} className='flex mb-3 py-8 px-9 justify-between bg-zinc-800'>
               <p data-tour={`${i === 0 ? 'step-2' : ''}`}>
-                {getMonthAbbr(staked.date)}
-                &nbsp;{staked.date.getDate()},
-                &nbsp;{staked.date.getFullYear()}
-                &nbsp;{staked.date.getHours() || '00'}:{staked.date.getMinutes() || '00'}:{staked.date.getSeconds() || '00'}
+                {getFullFormatedDate(staked.date)}
               </p>
               <p className='ml-2 text-right text-violet-400 opacity-75'>{staked.value} ATOM</p>
             </section>

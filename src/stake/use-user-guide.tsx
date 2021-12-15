@@ -26,14 +26,10 @@ export default function useEarningCalc({ steps, stepDelay = 3000 }: UseEarningCa
     let timer: any
 
     if (isOpen) {
-      document.documentElement.style.overflow = 'hidden'
       timer = setTimeout(
         () => setCurrentStep(setCurrentStepCallback),
         delay
       )
-    } else {
-      document.documentElement.style.overflowY = 'auto'
-      document.documentElement.style.overflowX = 'hidden'
     }
 
     return () => {

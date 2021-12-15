@@ -8,7 +8,7 @@ import RadioButtonGroup from '../shared/radio-button-group';
 import { selectStaked, addStaked } from './slice';
 import { useAppDispatch, useAppSelector } from '../shared/hooks';
 import { useTour } from '@reactour/tour';
-import { getFullFormatedDate, getMonthAbbr } from '../shared/utils/date';
+import { getFullFormatedDate } from '../shared/utils/date';
 import { tourSteps, percentageOptions } from './config.json';
 import useEarningCalc from './use-earning-calc';
 

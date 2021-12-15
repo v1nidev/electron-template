@@ -10,10 +10,9 @@ import { useAppDispatch, useAppSelector } from '../shared/hooks';
 import { useTour } from '@reactour/tour';
 import { getMonthAbbr } from '../shared/utils/date';
 import steps from './tutorial.json';
-import { getPrecision } from '../shared/utils/number';
+import useEarningCalc from './use-earning-calc';
 
-const apyPercentage = 10.0377
-const apyMultiplier = apyPercentage / 100
+
 const options = [
   { label: '25%', value: '25' },
   { label: '50%', value: '50' },
@@ -21,8 +20,7 @@ const options = [
 ]
 
 function Stake(): JSX.Element {
-  const [savedAmount, setSavedAmount] = useState<string>('')
-  const [earningsAmount, setEarningsAmount] = useState<string>('')
+  const { savedAmount, setSavedAmount, earningsAmount, setEarningsAmount } = useEarningCalc()
   const [selectedPercentage, setSelectedPercentage] = useState('')
   const stakedList = useAppSelector(selectStaked)
   const { setIsOpen, isOpen, currentStep, setCurrentStep } = useTour()
@@ -42,42 +40,8 @@ function Stake(): JSX.Element {
       date: new Date(),
       value: savedAmount,
     }))
-    reset()
-  }
-
-  function reset() {
     setSavedAmount('')
     setEarningsAmount('')
-  }
-    
-  function handleSavedAmountInput(value: string) {
-    if (['', '0'].includes(value)) {
-      reset()
-      return
-    }
-
-    const savedAmountAsFloat = parseFloat(value as string)
-    const earnings = savedAmountAsFloat * apyMultiplier + savedAmountAsFloat
-    
-    setSavedAmount(value)
-    setEarningsAmount(getPrecision(earnings) > 6
-      ? earnings.toFixed(6)
-      : earnings.toString())
-  }
-
-  function handleEarningsInput(value: string) {
-    if (['', '0'].includes(value)) {
-      reset()
-      return
-    }
-
-    const earningsAmountAsFloat = parseFloat(value as string)
-    const neededSavedAmount = earningsAmountAsFloat / (apyMultiplier + 1)
-    
-    setEarningsAmount(value)
-    setSavedAmount(getPrecision(neededSavedAmount) > 6
-      ? neededSavedAmount.toFixed(6)
-      : neededSavedAmount.toString())
   }
 
   useEffect(() => {
@@ -119,7 +83,7 @@ function Stake(): JSX.Element {
             align='right'
             min={0}
             maxLength={9}
-            onInput={handleSavedAmountInput}
+            onInput={setSavedAmount}
           />
           <div className={`${separator} relative opacity-10`}>
             <img width={36} height={36} src={linkIcon} alt='' />
@@ -131,7 +95,7 @@ function Stake(): JSX.Element {
             align='left'
             min={0}
             maxLength={9}
-            onInput={handleEarningsInput}
+            onInput={setEarningsAmount}
           />
         </div>
 

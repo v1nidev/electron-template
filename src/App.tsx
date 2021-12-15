@@ -3,7 +3,7 @@ import { TourProvider } from '@reactour/tour'
 
 import { themeClass } from './index.css';
 import Stake from './stake/Stake';
-import steps from './stake/tutorial.json';
+import { tourSteps } from './stake/config.json';
 
 const radius = 10
 const tourStyles = {
@@ -19,7 +19,7 @@ const tourStyles = {
 
 function App(): JSX.Element {
   return (
-    <TourProvider steps={steps} styles={tourStyles}>
+    <TourProvider steps={tourSteps} styles={tourStyles}>
       <div className={`${themeClass}`}>
         <Stake />
       </div>

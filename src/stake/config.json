@@ -1,0 +1,17 @@
+{
+  "tourSteps": [
+    {
+      "selector": "[data-tour='step-1']",
+      "content": "Type Balance you would like to receive in 1 year"
+    },
+    {
+      "selector": "[data-tour='step-2']",
+      "content": "Explore transaction history!"
+    }
+  ],
+  "percentageOptions": [
+    { "label": "25%", "value": "25"    },
+    { "label": "50%", "value": "50"    },
+    { "label": "LL", "value": "100"    }
+  ]
+}

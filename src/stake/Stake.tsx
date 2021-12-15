@@ -9,15 +9,8 @@ import { selectStaked, addStaked } from './slice';
 import { useAppDispatch, useAppSelector } from '../shared/hooks';
 import { useTour } from '@reactour/tour';
 import { getMonthAbbr } from '../shared/utils/date';
-import steps from './tutorial.json';
+import { tourSteps, percentageOptions } from './config.json';
 import useEarningCalc from './use-earning-calc';
-
-
-const options = [
-  { label: '25%', value: '25' },
-  { label: '50%', value: '50' },
-  { label: 'ALL', value: '100' },
-]
 
 function Stake(): JSX.Element {
   const { savedAmount, setSavedAmount, earningsAmount, setEarningsAmount } = useEarningCalc()
@@ -27,7 +20,7 @@ function Stake(): JSX.Element {
   const dispatch = useAppDispatch()
 
   function setCurrentStepCallback(step: number) {    
-    if (step === steps.length - 1) {
+    if (step === tourSteps.length - 1) {
       setIsOpen(false)
       return NaN
     } else {
@@ -100,7 +93,7 @@ function Stake(): JSX.Element {
         </div>
 
         <div className='flex mt-16 justify-center'>
-          <RadioButtonGroup options={options} selectedVaue={selectedPercentage} onChange={setSelectedPercentage} />
+          <RadioButtonGroup options={percentageOptions} selectedVaue={selectedPercentage} onChange={setSelectedPercentage} />
         </div>
 
         <div className='mt-20 empty:mt-0 mx-auto max-w-2xl'>

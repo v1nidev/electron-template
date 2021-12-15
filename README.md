@@ -29,7 +29,6 @@ Clone this repo and install all dependencies
 ## TO-DO
 
 - To improve style consistency, I'd remove Tailwind and configure all design tokens using vanilla-extract
-- Review and refactor code
 
 ## Used libraries
 

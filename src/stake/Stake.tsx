@@ -7,26 +7,17 @@ import linkIcon from '../shared/img/icon-social-link.svg';
 import RadioButtonGroup from '../shared/radio-button-group';
 import { selectStaked, addStaked } from './slice';
 import { useAppDispatch, useAppSelector } from '../shared/hooks';
-import { useTour } from '@reactour/tour';
 import { getFullFormatedDate } from '../shared/utils/date';
 import { tourSteps, percentageOptions } from './config.json';
 import useEarningCalc from './use-earning-calc';
+import useUserGuide from './use-user-guide';
 
 function Stake(): JSX.Element {
   const { savedAmount, setSavedAmount, earningsAmount, setEarningsAmount } = useEarningCalc()
   const [selectedPercentage, setSelectedPercentage] = useState('')
   const stakedList = useAppSelector(selectStaked)
-  const { setIsOpen, isOpen, currentStep, setCurrentStep } = useTour()
+  const { setIsOpen: setIsTourOpen } = useUserGuide({ steps: tourSteps })
   const dispatch = useAppDispatch()
-
-  function setCurrentStepCallback(step: number) {    
-    if (step === tourSteps.length - 1) {
-      setIsOpen(false)
-      return NaN
-    } else {
-      return step + 1
-    }
-  }
 
   function stake() {
     dispatch(addStaked({
@@ -39,24 +30,12 @@ function Stake(): JSX.Element {
 
   useEffect(() => {
     const wasGuided = window.localStorage.getItem("was-guided")
-    const delay = 3000
-    let timer: any
-    
-    if (isOpen) {
-      timer = setTimeout(
-        () => setCurrentStep(setCurrentStepCallback),
-        delay
-      )
-    }
 
+    setIsTourOpen(true)
     if (!wasGuided) {
-      window.localStorage.setItem("was-guided", 'true')
-      setIsOpen(true)
+      window.localStorage.setItem("was-guided", "true")
     }
-    return () => {
-      clearTimeout(timer)
-    }
-  }, [isOpen, currentStep])
+  }, [])
 
   return (
     <main className={`${page}  container mx-auto pt-24 px-4`}>

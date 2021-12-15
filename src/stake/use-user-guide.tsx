@@ -6,9 +6,10 @@ interface UseEarningCalcProps {
     selector: string
     content: string
   }[]
+  stepDelay?: number
 }
 
-export default function useEarningCalc({ steps }: UseEarningCalcProps) {
+export default function useEarningCalc({ steps, stepDelay = 3000 }: UseEarningCalcProps) {
   const { setIsOpen, isOpen, currentStep, setCurrentStep } = useTour()
 
   function setCurrentStepCallback(step: number) {
@@ -21,7 +22,7 @@ export default function useEarningCalc({ steps }: UseEarningCalcProps) {
   }
 
   useEffect(() => {
-    const delay = 3000
+    const delay = stepDelay
     let timer: any
 
     if (isOpen) {

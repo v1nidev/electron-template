@@ -8,7 +8,7 @@ import RadioButtonGroup from '../shared/radio-button-group';
 import { selectStaked, addStaked } from './slice';
 import { useAppDispatch, useAppSelector } from '../shared/hooks';
 import { getFullFormatedDate } from '../shared/utils/date';
-import { tourSteps, percentageOptions } from './config.json';
+import { tourSteps, tourStepDelay, percentageOptions } from './config.json';
 import useEarningCalc from './use-earning-calc';
 import useUserGuide from './use-user-guide';
 
@@ -16,7 +16,7 @@ function Stake(): JSX.Element {
   const { savedAmount, setSavedAmount, earningsAmount, setEarningsAmount } = useEarningCalc()
   const [selectedPercentage, setSelectedPercentage] = useState('')
   const stakedList = useAppSelector(selectStaked)
-  const { setIsOpen: setIsTourOpen } = useUserGuide({ steps: tourSteps })
+  const { setIsOpen: setIsTourOpen } = useUserGuide({ steps: tourSteps, stepDelay: tourStepDelay })
   const dispatch = useAppDispatch()
 
   function stake() {

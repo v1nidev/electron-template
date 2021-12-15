@@ -1,4 +1,5 @@
 {
+  "tourStepDelay": 3000,
   "tourSteps": [
     {
       "selector": "[data-tour='step-1']",

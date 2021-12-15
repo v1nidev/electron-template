@@ -28,7 +28,6 @@ Clone this repo and install all dependencies
 
 ## TO-DO
 
-- Move business logic from Stake component to a custom hook
 - To improve style consistency, I'd remove Tailwind and configure all design tokens using vanilla-extract
 - Review and refactor code
 

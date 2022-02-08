@@ -1,5 +1,5 @@
 {
-  "name": "exodus-challenge",
+  "name": "electron-app-template",
   "version": "1.0.0",
   "main": "main/index.js",
   "author": {
